@@ -12,6 +12,11 @@ To play around prometheus, [promql](https://prometheus.io/docs/prometheus/latest
 docker-compose up -d
 ```
 
+To reload after prometheus config changes
+
+```zsh
+curl -X POST http://localhost:9090/-/reload
+```
+
 - [Access Prometheus](http://localhost:9090/)
 - [Access Node Exporter](http://localhost:9100)
-- [Access Grafana](http://localhost:3000)

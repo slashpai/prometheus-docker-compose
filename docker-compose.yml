@@ -2,16 +2,14 @@ version: "3.9"
 
 services:
   prometheus:
-    image: prom/prometheus:v2.28.1
+    image: prom/prometheus:v2.32.1
     container_name: prometheus
     volumes:
       # to pass config file to prometheus instead of default config
       - ./prometheus_config/:/etc/prometheus/
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
-      - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--web.enable-lifecycle'
     ports:
     - "9090:9090"
   node-exporter:
@@ -19,8 +17,3 @@ services:
     container_name: node-exporter
     ports:
     - "9100:9100"
-  grafana:
-    image: grafana/grafana:7.0.3
-    container_name: grafana
-    ports:
-    - "3000:3000"
