@@ -1,5 +1,5 @@
 global:
-  scrape_interval:     15s
+  scrape_interval:     5s
   evaluation_interval: 15s
 scrape_configs:
   - job_name: 'prometheus'
@@ -13,3 +13,15 @@ scrape_configs:
       # based on container name specified in docker-compose file
       - targets: ['node-exporter:9100']
     label_limit: 2
+
+  - job_name: 'prometheus-example-app'
+    static_configs:
+      # based on container name specified in docker-compose file
+      - targets: ['prometheus-example-app:8080']
+    label_limit: 4
+
+  - job_name: cadvisor
+    scrape_interval: 5s
+    static_configs:
+    - targets:
+      - cadvisor:8080
